@@ -1,0 +1,52 @@
+using System;
+
+namespace RockPaperScissors
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to Rock, Paper, Scissors!");
+            Console.WriteLine("Enter 'rock', 'paper', or 'scissors'. Type 'exit' to quit the game.");
+
+            while (true)
+            {
+                Console.Write("\nYour choice: ");
+                string userChoice = Console.ReadLine()?.ToLower();
+
+                if (userChoice == "exit")
+                {
+                    Console.WriteLine("Thanks for playing! Goodbye.");
+                    break;
+                }
+
+                if (userChoice != "rock" && userChoice != "paper" && userChoice != "scissors")
+                {
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    continue;
+                }
+
+                string[] choices = { "rock", "paper", "scissors" };
+                Random random = new Random();
+                string computerChoice = choices[random.Next(choices.Length)];
+
+                Console.WriteLine($"Computer chose: {computerChoice}");
+
+                if (userChoice == computerChoice)
+                {
+                    Console.WriteLine("It's a draw!");
+                }
+                else if ((userChoice == "rock" && computerChoice == "scissors") ||
+                         (userChoice == "paper" && computerChoice == "rock") ||
+                         (userChoice == "scissors" && computerChoice == "paper"))
+                {
+                    Console.WriteLine("You win!");
+                }
+                else
+                {
+                    Console.WriteLine("You lose!");
+                }
+            }
+        }
+    }
+}
